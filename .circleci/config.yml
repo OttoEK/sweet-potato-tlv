@@ -23,6 +23,9 @@ jobs:
       - run:
           command: go build tlv.go
   test:
+    docker:
+      # specify the version
+      - image: circleci/golang:1.9
     steps:
     - run:
         command:  go test -v -run TestMapearBasic
