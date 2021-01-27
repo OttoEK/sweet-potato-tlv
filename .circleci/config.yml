@@ -20,6 +20,3 @@ jobs:
     working_directory: /go/src/github.com/OttoEK/sweet-potato-tlv
     steps:
       - checkout
-
-      # specify any bash command here prefixed with `run: `
-      - run: go test -v tlv_test.go
