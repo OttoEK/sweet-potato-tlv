@@ -23,6 +23,8 @@ jobs:
       - run:
           command: go build tlv.go  
       - run:
+          command: go get "github.com/stretchr/testify/assert"
+      - run:
           name: "Create a temp directory for artifacts"
           command: |
             mkdir -p /tmp/artifacts
