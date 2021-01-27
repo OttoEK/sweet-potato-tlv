@@ -20,3 +20,5 @@ jobs:
     working_directory: /go/src/github.com/OttoEK/sweet-potato-tlv
     steps:
       - checkout
+      - run:
+          command: go build tlv.go
