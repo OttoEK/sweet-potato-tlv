@@ -21,10 +21,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Get dependencies
-        command: |
-          go mod vendor
+          name: Get dependencies
+          command: go mod vendor
       - run:
-         name: Run test cases
-         command: |
-            go test ./...
+          name: Run test cases
+          command: go test ./...
