@@ -29,3 +29,5 @@ jobs:
     steps:
     - run:
         command:  go test -v -run TestMapearBasic
+    - store_test_results:
+        path: test-results
