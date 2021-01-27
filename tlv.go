@@ -1,14 +1,15 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 )
 
 func main() {
 	s := "11AB398765UJ1A050200N23"
-	m, err := mapearTlv([]byte(s))
-	if(err!=nil){
+	m, err := MapearTlv([]byte(s))
+	if err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(m)
@@ -16,16 +17,19 @@ func main() {
 
 }
 
-func mapearTlv(value []byte) (m map[interface{}]string, err error) {
+func MapearTlv(value []byte) (map[interface{}]string, error) {
+	if value == nil {
+		return nil, errors.New("Sin parametros")
+	}
 	pos := 0
-	m = make(map[interface{}]string)
+	m := make(map[interface{}]string)
 	for {
 		size := value[pos : pos+2]
 		pos = pos + 2
 		nsize := string(size[0]) + string(size[1])
 		largo, err := strconv.Atoi(nsize)
 		if err != nil {
-			return m, err
+			return nil, err
 		}
 		valor := string(value[pos : pos+largo])
 		pos = pos + largo
@@ -43,6 +47,7 @@ func mapearTlv(value []byte) (m map[interface{}]string, err error) {
 			break
 		}
 	}
-	return m, err
+
+	return m, nil
 
 }
