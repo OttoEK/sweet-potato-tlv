@@ -22,6 +22,6 @@ func TestMapearBasic(t *testing.T) {
 		res, err := MapearTlv(nil)
 		assert.NotNil(t, err)
 		assert.Nil(t, res)
-		assert.Equal(t, "Sin parametros", err.Error())
+		assert.Equal(t, "sin parametros", err.Error())
 	})
 }
