@@ -21,20 +21,13 @@ jobs:
     steps:
       - checkout
       - run:
-          command: go build tlv.go
-  test:
-    docker:
-      # specify the version
-      - image: circleci/golang:1.9
-    steps:
+          command: go build tlv.go  
       - run:
-          command:  go test -v -run TestMapearBasic
-      - store_test_results:
-          path: test-results
-  deploy:
-    docker:
-      # specify the version
-      - image: circleci/golang:1.9
-    steps:
+          name: "Create a temp directory for artifacts"
+          command: |
+            mkdir -p /tmp/artifacts
       - run:
-          command: ./tlv
+          command: |
+            go test -coverprofile=c.out
+            go tool cover -html=c.out -o coverage.html
+            mv coverage.html /tmp/artifacts
