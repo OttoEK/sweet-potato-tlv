@@ -21,6 +21,10 @@ jobs:
     steps:
       - checkout
       - run:
-          command: go build tlv.go
+        name: Get dependencies
+        command: |
+          go mod vendor
       - run:
-          command: gotestsum
+         name: Run test cases
+         command: |
+            go test ./...
